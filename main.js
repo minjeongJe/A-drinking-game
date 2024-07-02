@@ -13,11 +13,13 @@ let computerNum = 0;
 let playBtn = document.getElementById("play-btn");
 let inputArea = document.getElementById("input-area");
 let resetBtn = document.getElementById("reset-btn");
-let chance = 5;
+let chance = 3;
 let chanceArea = document.getElementById("chance-area");
 let gameOver = false;
 let resultArea = document.getElementById("result-area");
 let history = [];
+let historyNum = document.getElementById("history-num");
+let alertArea = document.getElementById("alert-area");
 
 playBtn.addEventListener("click",play);
 resetBtn.addEventListener("click",reset);
@@ -31,7 +33,7 @@ function randomNum() {
 }
 
 function play() {
-    let userValue = inputArea.value;
+    let userValue = parseInt(inputArea.value);
 
     if(userValue < 1 || userValue > 100 ) {
         resultArea.textContent = " 1과 100 사이의 숫자를 입력하세요!!"
@@ -49,30 +51,37 @@ function play() {
     if(userValue < computerNum) {
         resultArea.textContent = "UP!"
     }else if(userValue > computerNum) {
-        resultArea.textContent = "down!"
+        resultArea.textContent = "Down!"
     }else {
        resultArea.textContent = "정답! 술먹일 사람 어서 지목해!"
+       gameOver = true;
     }
 
     history.push(userValue);
     console.log(history);
+    historyNum.textContent = `입력한 값: ${history.join(", ")} `;
 
-    if(chance < 1){
+    if (chance < 1 && !gameOver) {
         gameOver = true;
+        alert("Game Over! 기회를 모두 사용했습니다.");
     }
-    if(gameOver == true) {
+
+    if (gameOver) {
         playBtn.disabled = true;
     }
+    
 }
 
 //초기화
 function reset() {
     inputArea.value = "";
+    alertArea.style.display = "none"; 
 
     randomNum();
     resultArea.textContent = "숫자를 입력하세요."
-    chances = 5;
-    chanceArea.textContent = "남은 기회: 5"
+    chance = 3;
+    chanceArea.textContent = "남은 기회: 3"
+    historyNum .textContent =  "입력한 값: ";
     playBtn.disabled = false;
     gameOver = false;
     history = [];

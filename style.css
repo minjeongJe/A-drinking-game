@@ -21,6 +21,7 @@ body {
     background-color: #f9fcf6;
     margin: 0;
     font-size: 20px;
+    position: relative;
 }
 
 .container {
@@ -42,14 +43,18 @@ body {
 
 .container h1 {
     color: gray;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
-h3, #result-area, #chance-area {
+h3, #result-area, #chance-area, #history-num {
     padding: 5px;
     margin-bottom: 8px;
     color: rgb(44, 100, 77);
     transition: font-size 0.5s ease-in-out;
+}
+
+#result-area {
+    margin-bottom: 30px;
 }
 
 .container img{
