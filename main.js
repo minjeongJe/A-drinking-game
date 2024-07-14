@@ -27,6 +27,12 @@ inputArea.addEventListener("focus", function() {
     inputArea.value = "";
 })
 
+inputArea.addEventListener("keydown", function(event) {
+    if (event.key === 'Enter') {
+        play();
+    }
+});
+
 function randomNum() {
     computerNum = Math.floor(Math.random() * 100) + 1;
     console.log("정답",computerNum);
@@ -70,6 +76,7 @@ function play() {
         playBtn.disabled = true;
     }
     
+    inputArea.value = "";
 }
 
 //초기화
