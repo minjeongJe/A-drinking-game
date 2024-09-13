@@ -28,7 +28,7 @@ inputArea.addEventListener("focus", function() {
 })
 
 inputArea.addEventListener("keydown", function(event) {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && !gameOver) {
         play();
     }
 });
